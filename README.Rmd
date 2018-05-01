@@ -5,10 +5,15 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+# install.packages("tidyverse")
+library(devtools)
+install_github("jokergoo/ComplexHeatmap")
+# install.packages("grid")
 library(tidyverse)
 library(knitr)
 library(grid)
 library(broom)
+library(ComplexHeatmap)
 ```
 
 # Tidy data up
@@ -114,5 +119,16 @@ ComplexHeatmap::Heatmap(cor_mat, name = "foo", cell_fun = function(j, i, x, y, w
 #         }
 #     }, cluster_rows = FALSE, cluster_columns = FALSE,
 #     show_row_names = FALSE, show_column_names = FALSE)
+```
+# Plot
+```{r}
+data %>% 
+  select(corrCongruent, corrTotal) %>% 
+  ggplot(aes(x = corrCongruent, y = corrTotal))+
+  geom_point()+
+  theme_classic()+
+  xlab("Congruent Correlation")+
+  ylab("Total")+
+  labs(title = "My Title")
 ```
 

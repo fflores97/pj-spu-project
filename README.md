@@ -175,3 +175,19 @@ ComplexHeatmap::Heatmap(cor_mat, name = "foo", cell_fun = function(j, i, x, y, w
 #     }, cluster_rows = FALSE, cluster_columns = FALSE,
 #     show_row_names = FALSE, show_column_names = FALSE)
 ```
+
+Plot
+====
+
+``` r
+data %>% 
+  select(corrCongruent, corrTotal) %>% 
+  ggplot(aes(x = corrCongruent, y = corrTotal))+
+  geom_point()+
+  theme_classic()+
+  xlab("Congruent Correlation")+
+  ylab("Total")+
+  labs(title = "My Title")
+```
+
+![](README_files/figure-markdown_github/unnamed-chunk-6-1.png)
